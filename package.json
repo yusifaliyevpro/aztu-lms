@@ -18,6 +18,12 @@
             "name": "login-account",
             "title": "Login to AzTU LMS",
             "description": "Login to your AzTU LMS Account",
+            "mode": "no-view"
+        },
+        {
+            "name": "see-announcements",
+            "title": "See Announcements",
+            "description": "See and read latest news about AzTU LMS",
             "mode": "view"
         }
     ],

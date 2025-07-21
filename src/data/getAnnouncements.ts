@@ -13,13 +13,12 @@ export type Announcement = { id: string; title: string; creator: string; created
 export async function getAnnouncements() {
     const token = await getJWTToken()
     const response = await fetchWithCookies("https://api-lms.aztu.edu.az/api/announcements", {
+        method: "GET",
         headers: {
             accept: "application/json, text/plain, */*",
             authorization: `Bearer ${token}`,
             ...commonHeaders,
         },
-        body: null,
-        method: "GET",
     })
     const data = (await response.json()) as Announcement[]
 

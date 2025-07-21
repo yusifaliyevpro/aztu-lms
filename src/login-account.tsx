@@ -1,6 +1,5 @@
 import { open } from "@raycast/api"
-import { getJWTToken, getSSOUrl } from "./lib/helpers"
-import { getAnnouncements } from "./data/getAnnouncements"
+import { getSSOUrl } from "./lib/helpers"
 
 export default async function Command() {
     const data = await getSSOUrl()

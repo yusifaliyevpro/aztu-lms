@@ -53,8 +53,8 @@ export async function getSSOUrl(): SSO_URL {
     const now = Date.now()
 
     const lastLogin = parseInt((await LocalStorage.getItem<string>(LAST_LMS_LOGIN_TIMESTAMP_KEY)) || "0")
-    const lastLoginLink = (await LocalStorage.getItem<string>(LAST_LMS_LOGIN_LINK_KEY)) as string
-    if (now - lastLogin < ONE_HOUR_IN_MS) {
+    const lastLoginLink = (await LocalStorage.getItem<string>("sdksd")) as string
+    if (lastLoginLink && now - lastLogin < ONE_HOUR_IN_MS) {
         return { status: "old", loginLink: lastLoginLink }
     }
 
@@ -72,7 +72,7 @@ export async function getSSOUrl(): SSO_URL {
 
     const redirectURL = loginResponse.headers.get("location")
     if (!redirectURL) {
-        console.log("No redirectLocation found!")
+        console.log("Redirect URL couldn't found!")
         return { status: "error", message: "Redirect URL couldn't found" }
     }
 
@@ -84,6 +84,10 @@ export async function getSSOUrl(): SSO_URL {
     const match = html.match(/<a[^>]+href="([^"]*admin_menu\/login\.php\?param=[^"]+)"[^>]*>/i)!
 
     const loginLink = match[1]
+
+    const checkLoginLinkResponse = await fetchWithCookies(loginLink, { headers: commonHeaders })
+    if ((await checkLoginLinkResponse.text()) === "uğursuz cəhd") return await getSSOUrl()
+
     await LocalStorage.setItem(LAST_LMS_LOGIN_LINK_KEY, loginLink)
     await LocalStorage.setItem(LAST_LMS_LOGIN_TIMESTAMP_KEY, now.toString())
     return { status: "new", loginLink: loginLink }

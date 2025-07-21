@@ -46,5 +46,6 @@ export async function getScores() {
         method: "GET",
     })
     const data = (await response.json()) as Score
+    console.log(data)
     return data
 }

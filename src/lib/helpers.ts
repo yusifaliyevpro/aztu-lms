@@ -48,12 +48,13 @@ export async function generateJWTToken(): Promise<string | undefined> {
     if (data.status === "success") return data.token
 }
 
-type SSO_URL = Promise<{ status: "old" | "new"; loginLink: string } | { status: "error"; message: string }>
-export async function getSSOUrl(): SSO_URL {
+export async function getSSOUrl(): Promise<
+    { status: "old" | "new"; loginLink: string } | { status: "error"; message: string }
+> {
     const now = Date.now()
 
     const lastLogin = parseInt((await LocalStorage.getItem<string>(LAST_LMS_LOGIN_TIMESTAMP_KEY)) || "0")
-    const lastLoginLink = (await LocalStorage.getItem<string>("sdksd")) as string
+    const lastLoginLink = (await LocalStorage.getItem<string>(LAST_LMS_LOGIN_LINK_KEY)) as string
     if (lastLoginLink && now - lastLogin < ONE_HOUR_IN_MS) {
         return { status: "old", loginLink: lastLoginLink }
     }

@@ -21,9 +21,33 @@
             "mode": "no-view"
         },
         {
-            "name": "see-announcements",
-            "title": "See Announcements",
-            "description": "See and read latest news about AzTU LMS",
+            "name": "delete-session",
+            "title": "Delete old Session",
+            "description": "Delete old Session to get new Login Link and token",
+            "mode": "no-view"
+        },
+        {
+            "name": "announcements",
+            "title": "Announcements",
+            "description": "Read latest news about AzTU LMS",
+            "mode": "view"
+        },
+        {
+            "name": "profile-info",
+            "title": "Profile",
+            "description": "See your Profile Info",
+            "mode": "view"
+        },
+        {
+            "name": "transcript",
+            "title": "Transcript",
+            "description": "See and copy your Transcript",
+            "mode": "view"
+        },
+        {
+            "name": "attendance",
+            "title": "Attendance",
+            "description": "See and copy your Attendance Results",
             "mode": "view"
         }
     ],
@@ -47,6 +71,7 @@
     "dependencies": {
         "@raycast/api": "^1.101.1",
         "@raycast/utils": "^1.19.1",
+        "@typescript-eslint/parser": "^8.37.0",
         "fetch-cookie": "^3.1.0",
         "node-fetch": "^3.3.2",
         "tough-cookie": "^5.1.2"

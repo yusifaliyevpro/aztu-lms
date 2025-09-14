@@ -11,6 +11,7 @@
     ],
     "license": "MIT",
     "platforms": [
+        "macOS",
         "Windows"
     ],
     "commands": [
@@ -70,17 +71,17 @@
     ],
     "dependencies": {
         "@raycast/api": "^1.101.1",
-        "@raycast/utils": "^1.19.1",
+        "@raycast/utils": "^2.2.1",
         "@typescript-eslint/parser": "^8.37.0",
         "fetch-cookie": "^3.1.0",
         "node-fetch": "^3.3.2",
-        "tough-cookie": "^5.1.2"
+        "tough-cookie": "^6.0.0"
     },
     "devDependencies": {
-        "@raycast/eslint-config": "^1.0.11",
-        "@types/node": "18.18.4",
-        "@types/react": "19.0.10",
-        "eslint": "^8.57.1",
+        "@raycast/eslint-config": "^2.0.4",
+        "@types/node": "^24.3.3",
+        "@types/react": "^19.1.13",
+        "eslint": "^9.35.0",
         "prettier": "^3.6.2",
         "typescript": "^5.8.3"
     },

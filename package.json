@@ -28,6 +28,12 @@
             "mode": "no-view"
         },
         {
+            "name": "schedule",
+            "title": "Schedule",
+            "description": "See your Class Schedule",
+            "mode": "view"
+        },
+        {
             "name": "announcements",
             "title": "Announcements",
             "description": "Read latest news about AzTU LMS",
@@ -73,13 +79,13 @@
         "@raycast/api": "^1.101.1",
         "@raycast/utils": "^2.2.1",
         "@typescript-eslint/parser": "^8.37.0",
+        "date-fns": "^4.1.0",
         "fetch-cookie": "^3.1.0",
-        "node-fetch": "^3.3.2",
         "tough-cookie": "^6.0.0"
     },
     "devDependencies": {
         "@raycast/eslint-config": "^2.0.4",
-        "@types/node": "^24.3.3",
+        "@types/node": "^22.0.0",
         "@types/react": "^19.1.13",
         "eslint": "^9.35.0",
         "prettier": "^3.6.2",

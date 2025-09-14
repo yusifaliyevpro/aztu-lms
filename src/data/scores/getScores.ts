@@ -1,13 +1,6 @@
-import fetchCookie from "fetch-cookie";
-import fetch from "node-fetch";
-import { commonHeaders } from "../../lib/constants";
-import { getJWTToken } from "../../lib/helpers";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const tough = require("tough-cookie");
-
-const cookieJar = new tough.CookieJar();
-const fetchWithCookies = fetchCookie(fetch, cookieJar);
+import { commonHeaders } from "@/lib/constants";
+import { getJWTToken } from "@/lib/login";
+import { fetchWithCookies } from "@/lib/utils";
 
 export type TotalScore = {
     results: {
@@ -36,6 +29,7 @@ export type TotalScore = {
 
 export async function getTotalScores() {
     const token = await getJWTToken();
+    if (!token) return null;
     const response = await fetchWithCookies("https://api-lms.aztu.edu.az/api/scores", {
         method: "GET",
         body: null,
@@ -47,7 +41,7 @@ export async function getTotalScores() {
     });
     const data = (await response.json()) as TotalScore;
 
-    if (!data.results) return await getTotalScores();
+    if (!data.results) return null;
 
     return data;
 }

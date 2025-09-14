@@ -1,9 +1,9 @@
 import { Action, ActionPanel, Detail, showToast, Toast } from "@raycast/api";
 import { useEffect, useState } from "react";
-import { getSemesterScores, SemesterScores } from "../data/scores/getSemesterScores";
+import { getSemesterScores, SemesterScores } from "@/data/scores/getSemesterScores";
 
 export default function SemesterDetail({ semCode }: { semCode: string }) {
-    const [rows, setRows] = useState<SemesterScores>();
+    const [rows, setRows] = useState<SemesterScores | null>();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

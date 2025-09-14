@@ -4,7 +4,7 @@ import { Attendance, getAttendance } from "./data/getAttendance";
 import { AttendanceDetail } from "./components/AttendanceDetail";
 
 export default function Command() {
-    const [attendance, setAttendance] = useState<Attendance[]>();
+    const [attendance, setAttendance] = useState<Attendance[] | null>();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

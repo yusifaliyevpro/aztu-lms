@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Action, ActionPanel, List, showToast, Toast } from "@raycast/api";
-import { Announcement, getAnnouncements } from "./data/getAnnouncements";
+import { Announcement, getAnnouncements } from "./data/announcement";
+import { AnnouncementDetail } from "./components/AnnouncementDetail";
 
 export default function Command() {
-    const [announcements, setAnnouncements] = useState<Announcement[]>();
+    const [announcements, setAnnouncements] = useState<Announcement[] | null>();
 
     useEffect(() => {
         const fetchAnnouncements = async () => {
@@ -16,6 +17,7 @@ export default function Command() {
         };
         fetchAnnouncements();
     }, []);
+
     return (
         <List
             isLoading={announcements === undefined}
@@ -29,7 +31,10 @@ export default function Command() {
                     subtitle={item.created_at}
                     actions={
                         <ActionPanel>
-                            <Action.OpenInBrowser url={`https://lms.aztu.edu.az/announcements/${item.id}`} />
+                            <Action.Push
+                                title="View Announcement Details"
+                                target={<AnnouncementDetail title={item.title} id={item.id} />}
+                            />
                         </ActionPanel>
                     }
                 />

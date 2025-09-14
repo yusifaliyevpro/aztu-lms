@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getProfileInfo, ProfileInfo } from "./data/getProfileInfo";
 
 export default function Command() {
-    const [profile, setProfile] = useState<ProfileInfo>();
+    const [profile, setProfile] = useState<ProfileInfo | null>();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -55,7 +55,7 @@ export default function Command() {
                             actions={
                                 <ActionPanel>
                                     <Action.CopyToClipboard
-                                        title="Copy Student Id"
+                                        title="Copy Student ID"
                                         content={basic?.userId || ""}
                                         icon={Icon.CopyClipboard}
                                     />

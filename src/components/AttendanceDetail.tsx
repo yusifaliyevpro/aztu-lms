@@ -1,5 +1,5 @@
 import { Detail } from "@raycast/api";
-import { Attendance } from "../data/getAttendance";
+import { Attendance } from "@/data/getAttendance";
 
 export function AttendanceDetail({ lecture }: { lecture: Attendance }) {
     const getStatusText = (percent: string): string => {

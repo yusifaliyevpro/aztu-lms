@@ -4,7 +4,7 @@ import { getTotalScores, TotalScore } from "./data/scores/getScores";
 import SemesterDetail from "./components/SemesterDetails";
 
 export default function Command() {
-    const [totalScores, setTotalScores] = useState<TotalScore>();
+    const [totalScores, setTotalScores] = useState<TotalScore | null>();
 
     useEffect(() => {
         const fetchTotalScores = async () => {

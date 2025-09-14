@@ -22,6 +22,8 @@ declare namespace Preferences {
   export type LoginAccount = ExtensionPreferences & {}
   /** Preferences accessible in the `delete-session` command */
   export type DeleteSession = ExtensionPreferences & {}
+  /** Preferences accessible in the `schedule` command */
+  export type Schedule = ExtensionPreferences & {}
   /** Preferences accessible in the `announcements` command */
   export type Announcements = ExtensionPreferences & {}
   /** Preferences accessible in the `profile-info` command */
@@ -37,6 +39,8 @@ declare namespace Arguments {
   export type LoginAccount = {}
   /** Arguments passed to the `delete-session` command */
   export type DeleteSession = {}
+  /** Arguments passed to the `schedule` command */
+  export type Schedule = {}
   /** Arguments passed to the `announcements` command */
   export type Announcements = {}
   /** Arguments passed to the `profile-info` command */

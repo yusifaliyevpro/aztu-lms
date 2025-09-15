@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { List, ActionPanel, Action, showToast, Toast } from "@raycast/api";
 import { getTotalScores, TotalScore } from "./data/scores/getScores";
-import SemesterDetail from "./components/SemesterDetails";
+import SemesterDetail from "./components/semester-details";
 
 export default function Command() {
     const [totalScores, setTotalScores] = useState<TotalScore | null>();

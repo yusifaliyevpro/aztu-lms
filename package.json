@@ -3,7 +3,7 @@
     "name": "aztu-lms",
     "title": "AzTU LMS",
     "version": "1.0.0",
-    "description": "Login to AzTU LMS quickly",
+    "description": "Quickly access and manage your AzTU LMS account.",
     "icon": "icon.png",
     "author": "yusifaliyevpro",
     "categories": [
@@ -17,51 +17,51 @@
     "commands": [
         {
             "name": "login-account",
-            "title": "Login to AzTU LMS",
-            "description": "Login to your AzTU LMS Account",
+            "title": "Login Account",
+            "description": "Authenticate and log in to your AzTU LMS account",
             "mode": "no-view"
         },
         {
             "name": "delete-session",
-            "title": "Delete old Session",
+            "title": "Delete Session",
             "description": "Delete old Session to get new Login Link and token",
             "mode": "no-view"
         },
         {
             "name": "schedule",
-            "title": "Schedule",
-            "description": "See your Class Schedule",
+            "title": "Class Schedule",
+            "description": "View and manage your upcoming classes and timetable",
             "mode": "view"
         },
         {
             "name": "announcements",
             "title": "Announcements",
-            "description": "Read latest news about AzTU LMS",
+            "description": "Stay updated with important updates from AzTU LMS",
             "mode": "view"
         },
         {
             "name": "profile-info",
-            "title": "Profile",
-            "description": "See your Profile Info",
+            "title": "Profile Information",
+            "description": "View and manage your AzTU LMS profile details",
             "mode": "view"
         },
         {
             "name": "transcript",
-            "title": "Transcript",
-            "description": "See and copy your Transcript",
+            "title": "Academic Transcript",
+            "description": "View and copy your academic transcript and grades",
             "mode": "view"
         },
         {
             "name": "attendance",
             "title": "Attendance",
-            "description": "See and copy your Attendance Results",
+            "description": "View and copy your class attendance history and results",
             "mode": "view"
         }
     ],
     "preferences": [
         {
             "name": "username",
-            "title": "AzTU LMS username",
+            "title": "Username",
             "description": "Write your AzTU LMS username",
             "placeholder": "202501234",
             "type": "textfield",
@@ -69,7 +69,7 @@
         },
         {
             "name": "password",
-            "title": "AzTU LMS password",
+            "title": "Password",
             "description": "Write your AzTU LMS password",
             "type": "password",
             "required": true

@@ -8,9 +8,9 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
 type ExtensionPreferences = {
-  /** AzTU LMS username - Write your AzTU LMS username */
+  /** Username - Write your AzTU LMS username */
   "username": string,
-  /** AzTU LMS password - Write your AzTU LMS password */
+  /** Password - Write your AzTU LMS password */
   "password": string
 }
 

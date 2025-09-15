@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Action, ActionPanel, List, showToast, Toast } from "@raycast/api";
 import { Announcement, getAnnouncements } from "./data/announcement";
-import { AnnouncementDetail } from "./components/AnnouncementDetail";
+import { AnnouncementDetail } from "./components/announcement-detail";
 
 export default function Command() {
     const [announcements, setAnnouncements] = useState<Announcement[] | null>();

@@ -64,16 +64,16 @@ export default function Command() {
         return true;
     };
 
-    const getCurrentDayClasses = () => {
-        if (!schedule?.data) return null;
+    // const getCurrentDayClasses = () => {
+    //     if (!schedule?.data) return null;
 
-        const today = new Date();
-        const dayNames = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
-        const currentDayAz = dayNames[today.getDay()];
+    //     const today = new Date();
+    //     const dayNames = ["Bazar", "Bazar ertəsi", "Çərşənbə axşamı", "Çərşənbə", "Cümə axşamı", "Cümə", "Şənbə"];
+    //     const currentDayAz = dayNames[today.getDay()];
 
-        const todayClasses = schedule.data[currentDayAz] || [];
-        return todayClasses.filter(shouldShowClass);
-    };
+    //     const todayClasses = schedule.data[currentDayAz] || [];
+    //     return todayClasses.filter(shouldShowClass);
+    // };
 
     const getWeekTypeTitle = () => {
         if (weekFilter === "current") {
@@ -84,9 +84,7 @@ export default function Command() {
         return "Schedule";
     };
 
-    const todayClasses = getCurrentDayClasses();
-
-    const createFullScheduleText = () => {
+    const createFullScheduleMarkdown = () => {
         if (!schedule?.data) return "";
 
         let scheduleText = `# ${getWeekTypeTitle()}\n\n`;
@@ -100,14 +98,21 @@ export default function Command() {
             scheduleText += `## ${dayEn} (${dayAz})\n\n`;
 
             filteredClasses.forEach((cls, index) => {
-                scheduleText += `**${cls.time}** - ${cls.subject}\n`;
-                scheduleText += `- Teacher: ${cls.teacher}\n`;
-                scheduleText += `- Type: ${cls.lecture_type_name}\n`;
-                scheduleText += `- Room: ${cls.room || "TBA"}\n`;
+                const lecture_type =
+                    cls.lecture_type_name === "Mühazirə"
+                        ? "M"
+                        : cls.lecture_type_name === "Məşğələ"
+                          ? "m"
+                          : cls.lecture_type_name === "Laboratoriya"
+                            ? "L"
+                            : cls.lecture_type_name;
+                scheduleText += `📅 **${cls.time}** | ${cls.subject} (${lecture_type})`;
+                scheduleText += ` | ${cls.teacher}`;
+                scheduleText += ` | ${cls.room || "000-0"}\n`;
                 if (index < filteredClasses.length - 1) scheduleText += "\n";
             });
 
-            scheduleText += "\n---\n\n";
+            scheduleText += "\n\n";
         });
 
         return scheduleText;
@@ -133,37 +138,6 @@ export default function Command() {
                 </List.Dropdown>
             }
         >
-            {/* Today's Overview - only show if viewing current week and has classes today */}
-            {weekFilter === "current" && todayClasses && todayClasses.length > 0 && (
-                <List.Section title="📅 Today's Classes">
-                    <List.Item
-                        title="Today's Overview"
-                        subtitle={`${todayClasses.length} classes scheduled`}
-                        icon={{
-                            source: Icon.Camera,
-                            tintColor: Color.Blue,
-                        }}
-                        accessories={[
-                            {
-                                text: `${todayClasses[0]?.time.split(" - ")[0]} - ${todayClasses[todayClasses.length - 1]?.time.split(" - ")[1]}`,
-                                icon: Icon.Clock,
-                            },
-                        ]}
-                        actions={
-                            <ActionPanel>
-                                <Action.CopyToClipboard
-                                    title="Copy Today's Schedule"
-                                    content={todayClasses
-                                        .map(cls => `${cls.time}: ${cls.subject} (${cls.teacher})`)
-                                        .join("\n")}
-                                    icon={Icon.Clipboard}
-                                />
-                            </ActionPanel>
-                        }
-                    />
-                </List.Section>
-            )}
-
             {/* Weekly Schedule */}
             {schedule?.data &&
                 Object.entries(schedule.data).map(([dayAz, classes]) => {
@@ -227,8 +201,8 @@ export default function Command() {
                                                 icon={Icon.Person}
                                             />
                                             <Action.CopyToClipboard
-                                                title="Copy Full Schedule"
-                                                content={createFullScheduleText()}
+                                                title="Copy Full Schedule as Markdown"
+                                                content={createFullScheduleMarkdown()}
                                                 icon={Icon.Clipboard}
                                             />
                                         </ActionPanel>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { List, showToast, Toast, Color, Icon, Action, ActionPanel } from "@raycast/api";
 import { Attendance, getAttendance } from "./data/getAttendance";
-import { AttendanceDetail } from "./components/AttendanceDetail";
+import { AttendanceDetail } from "./components/attendance-detail";
 
 export default function Command() {
     const [attendance, setAttendance] = useState<Attendance[] | null>();

@@ -35,7 +35,8 @@ export default function Command() {
             try {
                 const data = await getSchedule();
                 setSchedule(data);
-            } catch {
+            } catch (error) {
+                console.error(error);
                 await showToast(Toast.Style.Failure, "Failed to fetch schedule");
             } finally {
                 setIsLoading(false);

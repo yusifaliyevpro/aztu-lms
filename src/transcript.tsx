@@ -5,21 +5,25 @@ import SemesterDetail from "./components/semester-details";
 
 export default function Command() {
     const [totalScores, setTotalScores] = useState<TotalScore | null>();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchTotalScores = async () => {
             try {
                 const data = await getTotalScores();
                 setTotalScores(data);
-            } catch {
+            } catch (error) {
+                console.error(error);
                 await showToast(Toast.Style.Failure, "Failed to fetch semester scores");
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchTotalScores();
     }, []);
 
     return (
-        <List isLoading={totalScores === undefined} searchBarPlaceholder="Search semesters...">
+        <List isLoading={isLoading} searchBarPlaceholder="Search semesters...">
             {totalScores?.results.map(semester => (
                 <List.Item
                     key={semester.sem_code}

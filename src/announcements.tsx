@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Action, ActionPanel, List, showToast, Toast } from "@raycast/api";
+import { Action, ActionPanel, Icon, List, showToast, Toast } from "@raycast/api";
 import { Announcement, getAnnouncements } from "./data/announcement";
 import { AnnouncementDetail } from "./components/announcement-detail";
 
 export default function Command() {
-    const [announcements, setAnnouncements] = useState<Announcement[] | null>();
+    const [announcements, setAnnouncements] = useState<Announcement[] | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchAnnouncements = async () => {
@@ -13,6 +14,8 @@ export default function Command() {
                 setAnnouncements(data);
             } catch {
                 await showToast(Toast.Style.Failure, "Failed to fetch announcements");
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchAnnouncements();
@@ -20,7 +23,7 @@ export default function Command() {
 
     return (
         <List
-            isLoading={announcements === undefined}
+            isLoading={isLoading}
             navigationTitle="Search Announcements"
             searchBarPlaceholder="Search AzTU LMS Announcements"
         >
@@ -39,6 +42,9 @@ export default function Command() {
                     }
                 />
             ))}
+            {!isLoading && (!announcements || announcements.length === 0) && (
+                <List.EmptyView icon={Icon.Bell} title="No Announcements" description="No announcements found." />
+            )}
         </List>
     );
 }

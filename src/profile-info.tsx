@@ -11,8 +11,9 @@ export default function Command() {
             try {
                 const data = await getProfileInfo();
                 setProfile(data);
-            } catch {
-                await showToast(Toast.Style.Failure, "Failed to fetch profile info");
+            } catch (error) {
+                console.error(error);
+                await showToast(Toast.Style.Failure, "Failed to fetch Profile Info");
             } finally {
                 setIsLoading(false);
             }

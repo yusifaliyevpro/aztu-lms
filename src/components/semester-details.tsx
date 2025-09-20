@@ -14,7 +14,7 @@ export default function SemesterDetail({ semCode }: { semCode: string }) {
             } catch {
                 await showToast(Toast.Style.Failure, "Failed to load semester details");
             } finally {
-                setTimeout(() => setIsLoading(false), 6000);
+                setIsLoading(false);
             }
         };
         fetchSemesterScores();

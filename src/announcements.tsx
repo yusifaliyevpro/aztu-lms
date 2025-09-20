@@ -12,7 +12,7 @@ export default function Command() {
                 const data = await getAnnouncements();
                 setAnnouncements(data);
             } catch {
-                await showToast(Toast.Style.Failure, "Failed to fetch semester scores");
+                await showToast(Toast.Style.Failure, "Failed to fetch announcements");
             }
         };
         fetchAnnouncements();

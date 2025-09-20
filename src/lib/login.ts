@@ -66,7 +66,7 @@ export async function getSSOUrl({
     return { status: "new", loginLink: loginLink };
 }
 
-export async function generateJWTToken(): Promise<string | undefined> {
+export async function generateJWTToken(retryCount = 0): Promise<string | undefined> {
     const ssoData = await getSSOUrl({ forLogin: false });
 
     if (!ssoData) {
@@ -84,11 +84,12 @@ export async function generateJWTToken(): Promise<string | undefined> {
         },
     });
 
-    const redirectURL = response.headers.get("location") as string[] | null;
+    const redirectURL = response.headers.get("location") as string | null;
 
     if (!redirectURL) {
         console.error("helpers.tsx: generateJWTToken() Redirect URL couldn't found!");
-        return await generateJWTToken();
+        if (retryCount >= 3) return undefined;
+        return await generateJWTToken(retryCount + 1);
     }
 
     const tokenAPI_URL = new URL(redirectURL);
